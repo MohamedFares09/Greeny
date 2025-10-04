@@ -11,13 +11,14 @@ class FeaturedItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var itemWidth = MediaQuery.sizeOf(context).width;
     return SizedBox(
-      width: itemWidth,
+      width: itemWidth * 0.85,
       child: Stack(
         children: [
           Positioned(
               left: 0,
               right: itemWidth * 0.4,
               bottom: 0,
+              top: 0,
               child: Image.asset(
                 Assets.watermelon_image,
                 fit: BoxFit.fill,
