@@ -15,4 +15,6 @@ abstract class Assets {
   static String notfication_image = 'assets/images/notif.svg';
   static String filtter_image = 'assets/images/filtter.svg';
   static String search_image = 'assets/images/search.svg';
+  static String watermelon_image = 'assets/images/watermelon_test.png';
+  static String shape_iamge = 'assets/images/shape.svg';
 }
