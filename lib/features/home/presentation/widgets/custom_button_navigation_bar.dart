@@ -6,7 +6,8 @@ class CustomButtonNavigationBar extends StatefulWidget {
   const CustomButtonNavigationBar({super.key});
 
   @override
-  State<CustomButtonNavigationBar> createState() => _CustomButtonNavigationBarState();
+  State<CustomButtonNavigationBar> createState() =>
+      _CustomButtonNavigationBarState();
 }
 
 class _CustomButtonNavigationBarState extends State<CustomButtonNavigationBar> {
@@ -32,12 +33,22 @@ class _CustomButtonNavigationBarState extends State<CustomButtonNavigationBar> {
                 spreadRadius: 0)
           ]),
       child: Row(
-        children: buttonNavigationBarItems.asMap().entries.map((e){
+        children: buttonNavigationBarItems.asMap().entries.map((e) {
           var index = e.key;
           var item = e.value;
-          return NavigationBarItem(
-            isActive: isSelected == index,
-            entity: item,
+          return Expanded(
+            flex: isSelected == index ? 3 : 2,
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  isSelected = index;
+                });
+              },
+              child: NavigationBarItem(
+                isActive: isSelected == index,
+                entity: item,
+              ),
+            ),
           );
         }).toList(),
       ),

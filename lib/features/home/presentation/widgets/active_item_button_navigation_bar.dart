@@ -9,37 +9,34 @@ class ActiveItem extends StatelessWidget {
   final String text;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 1.5.toInt(),
-      child: Center(
-        child: Container(
-          padding: EdgeInsets.only(left: 8),
-          decoration: ShapeDecoration(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30)),
-              color: Color(0xFFEEEEEE)),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 30,
-                height: 30,
-                decoration: ShapeDecoration(
-                    color: Color(0xFF1B5E37),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30))),
-                child: Center(child: SvgPicture.asset(image)),
-              ),
-              SizedBox(
-                width: 4,
-              ),
-              Text(
-                '$text',
-                style: AppTextStyles.semibold11
-                    .copyWith(color: AppColors.primaryColor),
-              )
-            ],
-          ),
+    return Center(
+      child: Container(
+        padding: EdgeInsets.only(left: 8),
+        decoration: ShapeDecoration(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30)),
+            color: Color(0xFFEEEEEE)),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 30,
+              height: 30,
+              decoration: ShapeDecoration(
+                  color: Color(0xFF1B5E37),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30))),
+              child: Center(child: SvgPicture.asset(image)),
+            ),
+            SizedBox(
+              width: 4,
+            ),
+            Text(
+              '$text',
+              style: AppTextStyles.semibold11
+                  .copyWith(color: AppColors.primaryColor),
+            )
+          ],
         ),
       ),
     );
