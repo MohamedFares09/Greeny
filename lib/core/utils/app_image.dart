@@ -16,5 +16,15 @@ abstract class Assets {
   static String filtter_image = 'assets/images/filtter.svg';
   static String search_image = 'assets/images/search.svg';
   static String watermelon_image = 'assets/images/watermelon_test.png';
-  static String shape_iamge = 'assets/images/shape.svg';
+  static String shape_image = 'assets/images/shape.svg';
+  static String home_image_active = 'assets/images/active/home.svg';
+  static String product_image_active = 'assets/images/active/product.svg';
+  static String shopping_cart_image_active =
+      'assets/images/active/shopping-cart.svg';
+  static String user_image_active = 'assets/images/active/user.svg';
+  static String home_image_inActive = 'assets/images/inActive/home.svg';
+  static String product_image_inActive = 'assets/images/inActive/product.svg';
+  static String shopping_cart_image_inActive =
+      'assets/images/inActive/shopping-cart.svg';
+  static String user_image_inActive = 'assets/images/inActive/user.svg';
 }

@@ -31,7 +31,7 @@ class FeaturedItem extends StatelessWidget {
                   topRight: Radius.circular(4),
                   bottomRight: Radius.circular(4)),
               image: DecorationImage(
-                  image: svg.Svg(Assets.shape_iamge), fit: BoxFit.fill),
+                  image: svg.Svg(Assets.shape_image), fit: BoxFit.fill),
             ),
             child: Padding(
               padding: const EdgeInsets.only(right: 33),
