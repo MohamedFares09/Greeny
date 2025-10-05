@@ -75,4 +75,7 @@ class FirebaseAuthServices {
       throw CustomException('حدث خطأ ما. الرجاء المحاولة مرة أخرى.');
     }
   }
+  bool isLoggedIn() {
+    return FirebaseAuth.instance.currentUser != null;
+  }
 }

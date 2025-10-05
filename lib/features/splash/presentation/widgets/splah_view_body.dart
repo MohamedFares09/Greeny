@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruits_app/constants.dart';
+import 'package:fruits_app/core/services/firebase_auth_services.dart';
 import 'package:fruits_app/core/services/shared_preferences_single_tone.dart';
 import 'package:fruits_app/features/auth/presentation/views/signin_view.dart';
+import 'package:fruits_app/features/home/presentation/views/home_view.dart';
 import 'package:fruits_app/features/on_boarding/presentation/view/onbording_view.dart';
 import 'package:fruits_app/core/utils/app_image.dart';
 
@@ -44,7 +46,11 @@ class _SplahViewBodyState extends State<SplahViewBody> {
       Duration(seconds: 3),
       () async {
         if (isOnBordingViewScreen) {
-          Navigator.pushReplacementNamed(context, SignInView.route);
+          if (FirebaseAuthServices().isLoggedIn()) {
+            Navigator.pushReplacementNamed(context, HomeView.route);
+          } else {
+            Navigator.pushReplacementNamed(context, SignInView.route);
+          }
         } else {
           Navigator.pushReplacementNamed(context, OnbordingView.route);
         }
