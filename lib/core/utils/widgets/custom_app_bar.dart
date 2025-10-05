@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fruits_app/core/utils/app_text_styles.dart';
 
 AppBar buildAppBar(BuildContext context,
-    {required String title, void Function()? onTap}) {
+    {required String title, void Function()? onTap , List<Widget>? actions}) {
   return AppBar(
+    actions: actions,
     backgroundColor: Colors.white,
     centerTitle: true,
     title: Text(
