@@ -1,12 +1,15 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fruits_app/constants.dart';
 import 'package:fruits_app/core/errors/exception.dart';
 import 'package:fruits_app/core/errors/failuer.dart';
 import 'package:fruits_app/core/hleper_functions/delete_user.dart';
 import 'package:fruits_app/core/services/database_services.dart';
 import 'package:fruits_app/core/services/firebase_auth_services.dart';
+import 'package:fruits_app/core/services/shared_preferences_single_tone.dart';
 import 'package:fruits_app/core/utils/backend_endpoint.dart';
 import 'package:fruits_app/features/auth/data/models/user_model.dart';
 import 'package:fruits_app/features/auth/doman/entites/user_entites.dart';
@@ -48,7 +51,7 @@ class AuthRepoImpl extends AuthRepo {
       user = await firebaseAuthServices.signInWithEmailAndPassword(
           email: email, password: password);
       var userEntity = await getUserData(uid: user.uid);
-
+      saveUserData(user: userEntity);
       return right(
         userEntity,
       );
@@ -73,7 +76,7 @@ class AuthRepoImpl extends AuthRepo {
       } else {
         await addUserData(user: userEnriry);
       }
-
+    saveUserData(user:  userEnriry);
       return right(userEnriry);
     } on CustomException catch (e) {
       await deleteUser(user);
@@ -98,6 +101,7 @@ class AuthRepoImpl extends AuthRepo {
       } else {
         await addUserData(user: userEntity);
       }
+      saveUserData(user: userEntity);
       return right(userEntity);
     } on CustomException catch (e) {
       await deleteUser(user);
@@ -113,7 +117,7 @@ class AuthRepoImpl extends AuthRepo {
   Future addUserData({required UserEntity user}) async {
     await dataBaseServices.addData(
         path: BackendEndpoint.addUserData,
-        data: user.toMap(),
+        data: UserModel.fromEntity(user).toMap(),
         documentId: user.uId);
   }
 
@@ -122,5 +126,11 @@ class AuthRepoImpl extends AuthRepo {
     var userData = await dataBaseServices.getUserData(
         path: BackendEndpoint.getUserData, uid: uid);
     return UserModel.fromJson(userData);
+  }
+
+  @override
+  Future saveUserData({required UserEntity user}) async {
+    var jsonData = jsonEncode(UserModel.fromEntity(user).toMap());
+    await SharedPreferencesService.setString(kUser, jsonData);
   }
 }
