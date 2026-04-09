@@ -15,7 +15,7 @@ class ProductModel {
   final bool isOrganic;
   final int numberOfCalories;
   final int unitAmout;
-  final num sellCount;
+  final num sellingCount;
   final int avgRating = 0;
   final int ratingCount = 0;
   final List<ReviewModel> reviews;
@@ -29,7 +29,7 @@ class ProductModel {
     required this.expirationMonth,
     required this.numberOfCalories,
     required this.unitAmout,
-    required this.sellCount,
+    required this.sellingCount,
     this.isOrganic = false,
     this.urlImage,
     required this.reviews,
@@ -48,8 +48,8 @@ class ProductModel {
       unitAmout: json['unitAmout'],
       isOrganic: json['isOrganic'],
       reviews: json['reviews'].map((e) => ReviewModel.fromJson(e)).toList(),
-      sellCount: json['sellCount'],
-    );
+      sellingCount: json['sellingCount'],
+    );  
   }
   ProductEntity toEntity(){
     return ProductEntity(
@@ -81,7 +81,7 @@ class ProductModel {
       'unitAmout': unitAmout,
       'isOrganic': isOrganic,
       'reviews': reviews.map((e) => e.toJson()).toList(),
-      'sellCount': sellCount,
+      'sellingCount': sellingCount,
     };
   }
 }
