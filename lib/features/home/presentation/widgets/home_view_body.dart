@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_app/constants.dart';
@@ -24,6 +23,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     context.read<ProductCubit>().getBestSellingProducts();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -31,31 +31,28 @@ class _HomeViewBodyState extends State<HomeViewBody> {
       child: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(kHorizontalPadding),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: kTopPadding,
-                  ),
-                  CustomHomeAppBar(),
-                  SizedBox(
-                    height: kTopPadding,
-                  ),
-                  SearchTextFeild(),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  FeaturedList(),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  BestSellerText(),
-                  SizedBox(
-                    height: 8,
-                  ),
-                ],
-              ),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: kTopPadding,
+                ),
+                CustomHomeAppBar(),
+                SizedBox(
+                  height: kTopPadding,
+                ),
+                SearchTextFeild(),
+                SizedBox(
+                  height: 12,
+                ),
+                FeaturedList(),
+                SizedBox(
+                  height: 12,
+                ),
+                BestSellerText(),
+                SizedBox(
+                  height: 8,
+                ),
+              ],
             ),
           ),
           BestSellingGridViewBlocBuilder()

@@ -32,31 +32,28 @@ class _ProductViewBodyState extends State<ProductViewBody> {
       child: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(kHorizontalPadding),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: kTopPadding,
-                  ),
-                  HeadProductViewBody(),
-                  SizedBox(
-                    height: kTopPadding,
-                  ),
-                  SearchTextFeild(),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  FeaturedList(),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  BestSellerText(),
-                  SizedBox(
-                    height: 8,
-                  ),
-                ],
-              ),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: kTopPadding,
+                ),
+                HeadProductViewBody(),
+                SizedBox(
+                  height: kTopPadding,
+                ),
+                SearchTextFeild(),
+                SizedBox(
+                  height: 12,
+                ),
+                FeaturedList(),
+                SizedBox(
+                  height: 12,
+                ),
+                BestSellerText(),
+                SizedBox(
+                  height: 8,
+                ),
+              ],
             ),
           ),
           BestSellingGridViewBlocBuilder()
