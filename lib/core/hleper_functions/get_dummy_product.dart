@@ -14,7 +14,7 @@ ProductEntity getDummyProduct(){
      numberOfCalories: 1,
       unitAmout: 1, 
       reviews: [],
-      urlImage: 'assets/images/apple.png',
+      urlImage: null,
       
   );
 }

@@ -30,24 +30,31 @@ class FruiteItem extends StatelessWidget {
                 onPressed: () {},
               ),
             ),
-            Expanded(
-              child: Image.asset(
-                Assets.watermelon_image,
-                fit: BoxFit.contain,
-              ),
-            ),
+            product.urlImage != null
+                ? Flexible(
+                    child: Image.network(
+                      product.urlImage!,
+                      fit: BoxFit.contain,
+                    ),
+                  )
+                : Flexible(
+                    child: Container(
+                    color: Colors.grey,
+                    height: 100,
+                    width: 100,
+                  )),
             const SizedBox(height: 8),
             ListTile(
               contentPadding: EdgeInsets.zero,
               title: Text(
-                'بطيخ',
+                product.name,
                 style: AppTextStyles.semibold13,
               ),
               subtitle: Row(
                 children: [
                   Flexible(
                     child: Text(
-                      '20جنية',
+                      '${product.price}جنية',
                       style: AppTextStyles.semibold13
                           .copyWith(color: AppColors.scendryColor),
                       overflow: TextOverflow.ellipsis,
