@@ -3,7 +3,8 @@ import 'package:fruits_app/features/home/doman/entities/buttom_navigation_bar_en
 import 'package:fruits_app/features/home/presentation/widgets/navigation_bar_item.dart';
 
 class CustomButtonNavigationBar extends StatefulWidget {
-  const CustomButtonNavigationBar({super.key});
+  const CustomButtonNavigationBar({super.key, required this.onTabChanged});
+  final void Function(int index) onTabChanged;
 
   @override
   State<CustomButtonNavigationBar> createState() =>
@@ -39,10 +40,12 @@ class _CustomButtonNavigationBarState extends State<CustomButtonNavigationBar> {
           return Expanded(
             flex: isSelected == index ? 3 : 2,
             child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
               onTap: () {
                 setState(() {
                   isSelected = index;
                 });
+                widget.onTabChanged(index);
               },
               child: NavigationBarItem(
                 isActive: isSelected == index,

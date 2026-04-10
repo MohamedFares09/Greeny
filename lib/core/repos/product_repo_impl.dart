@@ -10,7 +10,7 @@ class ProductRepoImpl extends ProductRepo {
   final DataBaseServices dataBaseServices;
   ProductRepoImpl(this.dataBaseServices);
   @override
-  Future<Either<Failure, List<ProductEntity>>> getAllProducts() async {
+  Future<Either<Failure, List<ProductEntity>>> getProducts() async {
     try {
       var data = await dataBaseServices.getData(
           path: BackendEndpoint.getAllProducts) as List<Map<String, dynamic>>;
