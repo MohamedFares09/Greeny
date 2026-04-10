@@ -4,7 +4,7 @@ import 'package:fruits_app/constants.dart';
 import 'package:fruits_app/core/services/firebase_auth_services.dart';
 import 'package:fruits_app/core/services/shared_preferences_single_tone.dart';
 import 'package:fruits_app/features/auth/presentation/views/signin_view.dart';
-import 'package:fruits_app/features/home/presentation/views/home_view.dart';
+import 'package:fruits_app/features/home/presentation/views/main_view.dart';
 import 'package:fruits_app/features/on_boarding/presentation/view/onbording_view.dart';
 import 'package:fruits_app/core/utils/app_image.dart';
 
@@ -47,7 +47,7 @@ class _SplahViewBodyState extends State<SplahViewBody> {
       () async {
         if (isOnBordingViewScreen) {
           if (FirebaseAuthServices().isLoggedIn()) {
-            Navigator.pushReplacementNamed(context, HomeView.route);
+            Navigator.pushReplacementNamed(context, MainView.route);
           } else {
             Navigator.pushReplacementNamed(context, SignInView.route);
           }
