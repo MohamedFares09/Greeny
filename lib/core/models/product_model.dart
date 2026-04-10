@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:fruits_app/core/entities/product_entity.dart';
+import 'package:fruits_app/core/hleper_functions/get_ava_rating.dart';
 import 'package:fruits_app/core/models/review_model.dart';
 
 class ProductModel {
@@ -8,7 +9,7 @@ class ProductModel {
   final String code;
   final String description;
   final num price;
-  final File image;
+  final File? image;
   final bool isFeatured;
   String? urlImage;
   final int expirationMonth;
@@ -16,7 +17,7 @@ class ProductModel {
   final int numberOfCalories;
   final int unitAmout;
   final num sellingCount;
-  final int avgRating = 0;
+  final num avgRating;
   final int ratingCount = 0;
   final List<ReviewModel> reviews;
   ProductModel({
@@ -24,7 +25,7 @@ class ProductModel {
     required this.code,
     required this.description,
     required this.price,
-    required this.image,
+    this.image,
     required this.isFeatured,
     required this.expirationMonth,
     required this.numberOfCalories,
@@ -33,6 +34,8 @@ class ProductModel {
     this.isOrganic = false,
     this.urlImage,
     required this.reviews,
+    required this.avgRating,
+  
   });
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
@@ -47,8 +50,9 @@ class ProductModel {
       numberOfCalories: json['numberOfCalories'],
       unitAmout: json['unitAmout'],
       isOrganic: json['isOrganic'],
-      reviews: json['reviews'].map((e) => ReviewModel.fromJson(e)).toList(),
+      reviews: json['reviews'] != null ? List<ReviewModel>.from(json['reviews'].map((e) => ReviewModel.fromJson(e))) : [],
       sellingCount: json['sellingCount'],
+      avgRating: getAvgRating(json['reviews']),
     );  
   }
   ProductEntity toEntity(){
@@ -57,7 +61,7 @@ class ProductModel {
       code: code,
       description: description,
       price: price,
-      image: image,
+      image: image ?? File(''), 
       isFeatured: isFeatured,
       urlImage: urlImage,
       expirationMonth: expirationMonth,
@@ -65,7 +69,7 @@ class ProductModel {
       unitAmout: unitAmout,
       isOrganic: isOrganic,
       reviews: reviews.map((e) => e.toEntity()).toList(),
-      
+     
     );
   }
   toJson() {
@@ -85,3 +89,5 @@ class ProductModel {
     };
   }
 }
+
+
