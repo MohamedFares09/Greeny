@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_app/core/cubit/cubit/product_cubit.dart';
+import 'package:fruits_app/core/hleper_functions/get_it_function.dart';
+import 'package:fruits_app/core/repos/product_repo.dart';
+import 'package:fruits_app/features/home/presentation/widgets/product_view_body.dart';
 
 class ProductView extends StatelessWidget {
   const ProductView({super.key});
@@ -6,13 +11,9 @@ class ProductView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            
-          ],
-        ),
-      ),
-    );
+        body: BlocProvider(
+      create: (context) => ProductCubit(getIt.get<ProductRepo>()),
+      child: SafeArea(child: ProductViewBody()),
+    ));
   }
 }
