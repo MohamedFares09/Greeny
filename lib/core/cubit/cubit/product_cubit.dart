@@ -7,7 +7,7 @@ part 'product_state.dart';
 
 class ProductCubit extends Cubit<ProductState> {
   ProductCubit(this.productRepo) : super(ProductInitial());
-
+  int productLenght = 0;
   final ProductRepo productRepo;
 
   Future<void> getBestSellingProducts() async {
@@ -19,10 +19,10 @@ class ProductCubit extends Cubit<ProductState> {
       emit(ProductFailure(errorMessage: failure.message));
     }, (products) {
       if (isClosed) return;
+      productLenght = products.length;
       emit(ProductSuccess(products: products));
     });
   }
-
 
   Future<void> getProducts() async {
     if (isClosed) return;

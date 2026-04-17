@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_app/core/cubit/cubit/product_cubit.dart';
 import 'package:fruits_app/core/hleper_functions/get_dummy_product.dart';
 import 'package:fruits_app/core/utils/widgets/custom_error_widget.dart';
-import 'package:fruits_app/features/home/presentation/widgets/best_selling_grid_view.dart';
+import 'package:fruits_app/features/home/presentation/widgets/products_grid_view.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class BestSellingGridViewBlocBuilder extends StatelessWidget {
-  const BestSellingGridViewBlocBuilder({
+class ProductGridViewBlocBuilder extends StatelessWidget {
+  const ProductGridViewBlocBuilder({
     super.key,
   });
 
@@ -17,12 +17,12 @@ class BestSellingGridViewBlocBuilder extends StatelessWidget {
       builder: (context, state) {
 
         if(state is ProductSuccess){
-          return BestSellingGridView(products: state.products);
+          return ProductsGridView(products: state.products);
         }
         else if(state is ProductFailure){
           return SliverToBoxAdapter(child: CustomErrorWidget(errorMessage: state.errorMessage));
         }
-        return Skeletonizer.sliver(child:  BestSellingGridView(products: getDummyProducts(),));
+        return Skeletonizer.sliver(child:  ProductsGridView(products: getDummyProducts(),));
         
       },
     );

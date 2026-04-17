@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_app/features/home/presentation/views/product_view.dart';
 import 'package:fruits_app/features/home/presentation/widgets/custom_button_navigation_bar.dart';
-import 'package:fruits_app/features/home/presentation/widgets/home_view.dart';
+import 'package:fruits_app/features/home/presentation/views/home_view.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
