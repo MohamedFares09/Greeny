@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_app/constants.dart';
-import 'package:fruits_app/core/utils/app_text_styles.dart';
 import 'package:fruits_app/core/utils/widgets/custom_app_bar.dart';
 import 'package:fruits_app/features/home/presentation/widgets/cart_header.dart';
 import 'package:fruits_app/features/home/presentation/widgets/cart_item.dart';
@@ -11,7 +10,7 @@ class CartViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.zero,
       child: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -26,7 +25,7 @@ class CartViewBody extends StatelessWidget {
                 ),
                 CartHeader(),
                 SizedBox(
-                  height: kTopPadding,
+                  height: 24,
                 ),
                 CartItem()
               ],

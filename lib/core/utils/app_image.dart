@@ -28,4 +28,5 @@ abstract class Assets {
       'assets/images/inActive/shopping-cart.svg';
   static String user_image_inActive = 'assets/images/inActive/user.svg';
   static String filitering_image = 'assets/images/filitering.svg';
+  static String trash_image = 'assets/images/trash.svg';
 }
