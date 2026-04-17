@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_app/features/home/presentation/views/cart_view.dart';
 import 'package:fruits_app/features/home/presentation/views/product_view.dart';
 import 'package:fruits_app/features/home/presentation/widgets/custom_button_navigation_bar.dart';
 import 'package:fruits_app/features/home/presentation/views/home_view.dart';
@@ -17,7 +18,7 @@ class _MainViewState extends State<MainView> {
   final List<Widget> _views = [
     const HomeView(),
     const ProductView(),
-    const Scaffold(body: Center(child: Text('سلة التسوق'))),
+    const CartView(),
     const Scaffold(body: Center(child: Text('حسابي'))),
   ];
 
