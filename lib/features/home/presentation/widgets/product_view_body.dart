@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_app/constants.dart';
 import 'package:fruits_app/core/cubit/cubit/product_cubit.dart';
 import 'package:fruits_app/core/utils/widgets/search_text_feild.dart';
-import 'package:fruits_app/features/home/presentation/widgets/best_seller_text.dart';
 import 'package:fruits_app/features/home/presentation/widgets/products_grid_view_bloc_builder.dart';
 import 'package:fruits_app/features/home/presentation/widgets/filiter_sort_header.dart';
 import 'package:fruits_app/features/home/presentation/widgets/head_product_view_body.dart';

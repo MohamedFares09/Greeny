@@ -31,7 +31,10 @@ class _MainViewState extends State<MainView> {
           });
         },
       ),
-      body: _views[_selectedIndex],
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: _views,
+      ),
     );
   }
 }
