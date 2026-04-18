@@ -20,8 +20,8 @@ class CartItem extends StatelessWidget {
                 Container(
                   color: Color(0xffF3F5F7),
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 26),
-                  child: Image.asset(
-                    'assets/images/watermelon_test.png',
+                  child: Image.network(
+                    cartItemEntity.productEntity.urlImage!,
                     width: 50,
                     height: 50,
                   ),
@@ -34,14 +34,14 @@ class CartItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'بطيخ',
+                      cartItemEntity.productEntity.name,
                       style: AppTextStyles.bold13,
                     ),
                     SizedBox(
                       height: 6,
                     ),
                     Text(
-                      '3 كم ',
+                      " ${cartItemEntity.productEntity.unitAmout} كم",
                       style: AppTextStyles.regular13
                           .copyWith(color: Color(0xffF4A91F)),
                     ),
@@ -59,7 +59,7 @@ class CartItem extends StatelessWidget {
                           width: 16,
                         ),
                         Text(
-                          '1',
+                          cartItemEntity.count.toString(),
                           style: AppTextStyles.bold13,
                         ),
                         SizedBox(
@@ -85,7 +85,7 @@ class CartItem extends StatelessWidget {
                     ),
                     Spacer(),
                     Text(
-                      '60 جنيه ',
+                      '${cartItemEntity.productEntity.price} جنيه ',
                       style: AppTextStyles.bold16
                           .copyWith(color: Color(0xffF4A91F)),
                     )
