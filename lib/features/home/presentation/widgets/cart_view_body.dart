@@ -28,7 +28,7 @@ class CartViewBody extends StatelessWidget {
                   SizedBox(
                     height: 24,
                   ),
-                  CartItemList(),
+                  CartItemList(cartItems: []),
                 ],
               ),
             ),
