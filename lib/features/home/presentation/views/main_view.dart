@@ -44,6 +44,9 @@ class _MainViewState extends State<MainView> {
                 buildsnakbar(
                     context, 'تم إضافة المنتج إلى السلة', Colors.green);
               }
+              if (state is CartRemoved) {
+                buildsnakbar(context, 'تم إزالة المنتج من السلة', Colors.red);
+              }
             },
             child: IndexedStack(
               index: _selectedIndex,

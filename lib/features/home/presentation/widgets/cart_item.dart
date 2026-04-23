@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart' show SvgPicture;
 import 'package:fruits_app/core/utils/app_image.dart';
 import 'package:fruits_app/core/utils/app_text_styles.dart';
 import 'package:fruits_app/features/home/doman/entities/cart_item_entity.dart';
+import 'package:fruits_app/features/home/presentation/cart_cubit/cart_cubit.dart';
 
 class CartItem extends StatelessWidget {
   const CartItem({super.key, required this.cartItemEntity});
@@ -51,6 +53,9 @@ class CartItem extends StatelessWidget {
                     Row(
                       children: [
                         CartActionButton(
+                          onPressed: () {
+                            cartItemEntity.incrementCount();
+                          },
                           icon: Icons.add,
                           color: Color(0xff1B5E37),
                           iconColor: Colors.white,
@@ -66,6 +71,9 @@ class CartItem extends StatelessWidget {
                           width: 16,
                         ),
                         CartActionButton(
+                          onPressed: () {
+                            cartItemEntity.decrementCount();
+                          },
                           icon: Icons.remove,
                           color: Color(0xffF3F5F7),
                           iconColor: Color(0xff979899),
@@ -80,7 +88,9 @@ class CartItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        context.read<CartCubit>().removeProduct(cartItemEntity);
+                      },
                       child: SvgPicture.asset(Assets.trash_image),
                     ),
                     Spacer(),
@@ -109,25 +119,29 @@ class CartActionButton extends StatelessWidget {
     required this.icon,
     required this.color,
     required this.iconColor,
+    required this.onPressed,
   });
   final IconData icon;
   final Color color;
   final Color iconColor;
+  final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 24,
-      height: 24,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        color: color,
-      ),
-      child: Center(
-        child: Icon(
-          icon,
-          color: iconColor,
-        ),
-      ),
-    );
+    return GestureDetector(
+        onTap: onPressed,
+        child: Container(
+          width: 24,
+          height: 24,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            color: color,
+          ),
+          child: Center(
+            child: Icon(
+              icon,
+              color: iconColor,
+            ),
+          ),
+        ));
   }
 }
