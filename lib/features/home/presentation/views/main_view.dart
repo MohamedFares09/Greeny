@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_app/core/hleper_functions/build_snak_bar.dart';
-import 'package:fruits_app/features/home/presentation/cart_cubit/cart_cubit.dart';
+import 'package:fruits_app/features/home/presentation/cubit/cart_cubit/cart_cubit.dart';
 import 'package:fruits_app/features/home/presentation/views/cart_view.dart';
 import 'package:fruits_app/features/home/presentation/views/product_view.dart';
 import 'package:fruits_app/features/home/presentation/widgets/custom_button_navigation_bar.dart';

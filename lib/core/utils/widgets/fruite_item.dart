@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_app/core/entities/product_entity.dart';
 import 'package:fruits_app/core/utils/app_colors.dart';
 import 'package:fruits_app/core/utils/app_text_styles.dart';
-import 'package:fruits_app/features/home/presentation/cart_cubit/cart_cubit.dart';
+import 'package:fruits_app/features/home/presentation/cubit/cart_cubit/cart_cubit.dart';
 
 class FruiteItem extends StatelessWidget {
   const FruiteItem({super.key, required this.product});
