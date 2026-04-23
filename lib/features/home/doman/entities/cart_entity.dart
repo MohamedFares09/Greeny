@@ -6,6 +6,15 @@ class CartEntity {
   CartEntity({required this.cartItems});
 
 
+  double calculateTotalPrice(){
+    double totalPrice = 0;
+    for(var cartItemEntity in cartItems){
+      totalPrice += cartItemEntity.calculateTotalPrice();
+    }
+    return totalPrice;
+  }
+
+
   addCartItem(CartItemEntity cartItemEntity){
     cartItems.add(cartItemEntity);
   }
@@ -14,7 +23,7 @@ class CartEntity {
   }
   bool isProductExist(ProductEntity productEntity){
     for(var cartItemEntity in cartItems){
-      if(cartItemEntity == productEntity){
+      if(cartItemEntity.productEntity.code == productEntity.code){
         return true;
       }
     }
@@ -23,7 +32,7 @@ class CartEntity {
 
   CartItemEntity getCartItem(ProductEntity productEntity){
     for(var cartItemEntity in cartItems){
-      if(cartItemEntity.productEntity == productEntity){
+      if(cartItemEntity.productEntity.code == productEntity.code){
         return cartItemEntity;
       }
     }

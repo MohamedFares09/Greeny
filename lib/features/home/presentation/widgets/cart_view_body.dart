@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_app/constants.dart';
 import 'package:fruits_app/core/utils/widgets/custom_app_bar.dart';
 import 'package:fruits_app/core/utils/widgets/custom_button.dart';
+import 'package:fruits_app/features/home/presentation/cart_cubit/cart_cubit.dart';
 import 'package:fruits_app/features/home/presentation/widgets/cart_header.dart';
 import 'package:fruits_app/features/home/presentation/widgets/cart_item_list.dart';
 
@@ -28,7 +30,9 @@ class CartViewBody extends StatelessWidget {
                   SizedBox(
                     height: 24,
                   ),
-                  CartItemList(cartItems: []),
+                  CartItemList(
+                      cartItems:
+                          context.watch<CartCubit>().cartEntity.cartItems),
                 ],
               ),
             ),
@@ -38,7 +42,9 @@ class CartViewBody extends StatelessWidget {
             bottom: 50,
             left: 16,
             right: 16,
-            child: CustomButton(text: "الدفع 120 جنيه  "))
+            child: CustomButton(
+                text:
+                    "الدفع ${context.read<CartCubit>().cartEntity.calculateTotalPrice()} جنيه  "))
       ],
     );
   }

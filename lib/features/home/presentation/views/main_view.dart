@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_app/core/hleper_functions/build_snak_bar.dart';
 import 'package:fruits_app/features/home/presentation/cart_cubit/cart_cubit.dart';
 import 'package:fruits_app/features/home/presentation/views/cart_view.dart';
 import 'package:fruits_app/features/home/presentation/views/product_view.dart';
@@ -37,9 +38,17 @@ class _MainViewState extends State<MainView> {
           },
         ),
         body: SafeArea(
-          child: IndexedStack(
-            index: _selectedIndex,
-            children: _views,
+          child: BlocListener<CartCubit, CartState>(
+            listener: (context, state) {
+              if (state is CartAdded) {
+                buildsnakbar(
+                    context, 'تم إضافة المنتج إلى السلة', Colors.green);
+              }
+            },
+            child: IndexedStack(
+              index: _selectedIndex,
+              children: _views,
+            ),
           ),
         ),
       ),
