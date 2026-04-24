@@ -9,7 +9,14 @@ class CheckoutView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: buildAppBar(context, title: 'الشحن'),
+      appBar: buildAppBar(
+        context,
+        isIcon: true,
+        title: 'الشحن',
+        onTap: () {
+          Navigator.pop(context);
+        },
+      ),
       body: CheckoutViewBody(),
     );
   }

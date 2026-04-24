@@ -21,7 +21,7 @@ class ActiveItemCheckout extends StatelessWidget {
         ),
         SizedBox(width: 4),
         Text(
-          'الشحن',
+          text,
           style: AppTextStyles.bold13.copyWith(color: AppColors.primaryColor),
         ),
       ],
