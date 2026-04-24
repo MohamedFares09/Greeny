@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_app/features/checkout/presentation/widget/active_item_checkout.dart';
-import 'package:fruits_app/features/checkout/presentation/widget/in_active_item_checkout.dart';
+import 'package:fruits_app/features/checkout/presentation/widget/step_item.dart';
 
 class StepsItemCheckoutView extends StatelessWidget {
   const StepsItemCheckoutView({super.key});
@@ -10,9 +9,10 @@ class StepsItemCheckoutView extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: List.generate(getString().length, (index) {
-        return ActiveItemCheckout(
-          //    index: index,
+        return StepItem(
+          index: index.toString(),
           text: getString()[index],
+          isActive: false,
         );
       }),
     );
