@@ -10,7 +10,7 @@ class StepsItemCheckoutView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: List.generate(getString().length, (index) {
         return StepItem(
-          index: index.toString(),
+          index: (index + 1).toString(),
           text: getString()[index],
           isActive: false,
         );
