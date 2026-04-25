@@ -1,17 +1,17 @@
-
 import 'package:flutter/material.dart';
 import 'package:fruits_app/core/utils/app_colors.dart';
 import 'package:fruits_app/core/utils/app_text_styles.dart';
 
 class ShappingItem extends StatelessWidget {
-  const ShappingItem({
-    super.key,
-    required this.title,
-    required this.subTitle,
-    required this.price,
-  });
+  const ShappingItem(
+      {super.key,
+      required this.title,
+      required this.subTitle,
+      required this.price,
+      required this.isSeleced});
   final String title, subTitle;
   final int price;
+  final bool isSeleced;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,13 +24,7 @@ class ShappingItem extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 18,
-              height: 18,
-              decoration: ShapeDecoration(
-                  shape: OvalBorder(
-                      side: BorderSide(width: 1, color: Color(0xff949D9E)))),
-            ),
+            isSeleced ? ActiveSelecedDot() : InActiveSelecedDot(),
             SizedBox(
               width: 10,
             ),
@@ -60,6 +54,40 @@ class ShappingItem extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class InActiveSelecedDot extends StatelessWidget {
+  const InActiveSelecedDot({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 18,
+      height: 18,
+      decoration: ShapeDecoration(
+          shape:
+              OvalBorder(side: BorderSide(width: 1, color: Color(0xff949D9E)))),
+    );
+  }
+}
+
+class ActiveSelecedDot extends StatelessWidget {
+  const ActiveSelecedDot({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 18,
+      height: 18,
+      decoration: ShapeDecoration(
+          color: AppColors.primaryColor,
+          shape: OvalBorder(side: BorderSide(width: 4, color: Colors.white))),
     );
   }
 }

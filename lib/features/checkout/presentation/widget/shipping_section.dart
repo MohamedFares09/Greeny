@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_app/core/utils/app_colors.dart';
-import 'package:fruits_app/core/utils/app_text_styles.dart';
+
 import 'package:fruits_app/features/checkout/presentation/widget/shipping_item.dart';
 
 class ShippingSection extends StatelessWidget {
@@ -11,6 +10,7 @@ class ShippingSection extends StatelessWidget {
     return Column(
       children: [
         ShappingItem(
+          isSeleced: true,
           title: 'الدفع عند الاستلام',
           subTitle: 'التسليم من المكان',
           price: 40,
@@ -19,6 +19,7 @@ class ShippingSection extends StatelessWidget {
           height: 8,
         ),
         ShappingItem(
+          isSeleced: false,
           title: 'الدفع عند الاستلام',
           subTitle: 'التسليم من المكان',
           price: 40,
