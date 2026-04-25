@@ -7,7 +7,7 @@ class StepsItemCheckoutView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: List.generate(getString().length, (index) {
         return StepItem(
           index: (index + 1).toString(),
@@ -20,5 +20,9 @@ class StepsItemCheckoutView extends StatelessWidget {
 }
 
 List<String> getString() {
-  return ['الشحن', 'العنوان', 'الدفع', 'المراجعه'];
+  return [
+    'الشحن',
+    'العنوان',
+    'الدفع',
+  ];
 }

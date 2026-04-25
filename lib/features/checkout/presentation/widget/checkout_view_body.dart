@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_app/core/utils/widgets/custom_button.dart';
-import 'package:fruits_app/features/checkout/presentation/widget/checkout_steps_pageview.dart';
+import 'package:fruits_app/features/checkout/presentation/widget/checkout_steps_page_view.dart';
 import 'package:fruits_app/features/checkout/presentation/widget/steps_item_checkout_view.dart';
 
 class CheckoutViewBody extends StatefulWidget {
@@ -34,10 +34,19 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
             height: 20,
           ),
           StepsItemCheckoutView(),
+          SizedBox(
+            height: 16,
+          ),
           Expanded(
             child: CheckoutStepsPageView(pageController: pageController),
           ),
-          CustomButton(text: 'التالي'),
+          CustomButton(
+            text: 'التالي',
+            onPressed: () {
+              pageController.nextPage(
+                  duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+            },
+          ),
           SizedBox(
             height: 32,
           ),

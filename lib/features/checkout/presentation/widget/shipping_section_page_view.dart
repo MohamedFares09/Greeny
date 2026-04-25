@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:fruits_app/features/checkout/presentation/widget/shipping_item.dart';
 
-class ShippingSection extends StatefulWidget {
-  const ShippingSection({super.key});
+class ShippingSectionPageView extends StatefulWidget {
+  const ShippingSectionPageView({super.key});
 
   @override
-  State<ShippingSection> createState() => _ShippingSectionState();
+  State<ShippingSectionPageView> createState() => _ShippingSectionState();
 }
 
-class _ShippingSectionState extends State<ShippingSection> {
+class _ShippingSectionState extends State<ShippingSectionPageView> {
   int indexSelected = 0;
   @override
   Widget build(BuildContext context) {
