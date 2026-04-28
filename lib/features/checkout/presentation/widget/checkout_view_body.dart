@@ -42,6 +42,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
           ),
           StepsItemCheckoutView(
             currentPageIndex: currentPageIndex,
+            pageController: pageController,
           ),
           SizedBox(
             height: 16,
