@@ -3,11 +3,7 @@ import 'package:fruits_app/features/checkout/presentation/widget/active_item_che
 import 'package:fruits_app/features/checkout/presentation/widget/in_active_item_checkout.dart';
 
 class StepItem extends StatelessWidget {
-  const StepItem(
-      {super.key,
-      required this.index,
-      required this.text,
-      required this.isActive});
+  const StepItem({super.key,required this.index,required this.text, required this.isActive});
   final String index, text;
   final bool isActive;
   @override
