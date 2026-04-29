@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_app/constants.dart';
+import 'package:fruits_app/core/hleper_functions/build_snak_bar.dart';
 import 'package:fruits_app/core/utils/widgets/custom_app_bar.dart';
 import 'package:fruits_app/core/utils/widgets/custom_button.dart';
+import 'package:fruits_app/core/utils/widgets/custom_item_empty.dart';
 import 'package:fruits_app/features/checkout/presentation/view/checkout_view.dart';
 import 'package:fruits_app/features/home/presentation/cubit/cart_cubit/cart_cubit.dart';
 import 'package:fruits_app/features/home/presentation/cubit/cart_item/cart_item_cubit.dart';
@@ -14,6 +16,7 @@ class CartViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isEmpty = context.watch<CartCubit>().cartEntity.cartItems.isEmpty;
     return Stack(
       children: [
         CustomScrollView(
@@ -32,9 +35,14 @@ class CartViewBody extends StatelessWidget {
                   SizedBox(
                     height: 24,
                   ),
-                  CartItemList(
-                      cartItems:
-                          context.watch<CartCubit>().cartEntity.cartItems),
+                  isEmpty
+                      ? CustomItemEmpty(
+                          text: "السلة فارغة",
+                          icon: Icons.shopping_cart_outlined,
+                        )
+                      : CartItemList(
+                          cartItems:
+                              context.watch<CartCubit>().cartEntity.cartItems),
                 ],
               ),
             ),
@@ -52,12 +60,12 @@ class CartViewBody extends StatelessWidget {
                 return false;
               },
               builder: (context, state) {
-                return CustomButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, CheckoutView.route);
-                    },
-                    text:
-                        "الدفع ${context.watch<CartCubit>().cartEntity.calculateTotalPrice()} جنيه  ");
+                return isEmpty
+                    ? SizedBox()
+                    : CustomButton(
+                        onPressed: () {},
+                        text:
+                            "الدفع ${context.watch<CartCubit>().cartEntity.calculateTotalPrice()} جنيه  ");
               },
             ))
       ],
