@@ -1,10 +1,10 @@
 import 'package:fruits_app/features/checkout/domain/entity/shipping_address_entity.dart';
-import 'package:fruits_app/features/home/doman/entities/cart_item_entity.dart';
+import 'package:fruits_app/features/home/doman/entities/cart_entity.dart';
 
 class OrderEntity {
-  final List<CartItemEntity> cartItems;
-  final bool payWithCash;
-  final ShippingAddressEntity shippingAddressEntity;
+  final CartEntity cartEntity;
+   bool  ?payWithCash;
+  final ShippingAddressEntity ? shippingAddressEntity;
 
-  OrderEntity(this.payWithCash, {required this.cartItems, required this.shippingAddressEntity});
+  OrderEntity(this.cartEntity, {  this.payWithCash, this.shippingAddressEntity});
 }

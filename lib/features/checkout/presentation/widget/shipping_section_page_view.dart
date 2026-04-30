@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_app/features/checkout/domain/entity/order_entity.dart';
 
 import 'package:fruits_app/features/checkout/presentation/widget/shipping_item.dart';
+import 'package:provider/provider.dart';
 
 class ShippingSectionPageView extends StatefulWidget {
   const ShippingSectionPageView({super.key});
@@ -10,20 +12,27 @@ class ShippingSectionPageView extends StatefulWidget {
 }
 
 class _ShippingSectionState extends State<ShippingSectionPageView> {
-  int indexSelected = 0;
+  int indexSelected = -1;
+ 
   @override
   Widget build(BuildContext context) {
+     var orderEntity = context.read<OrderEntity>();
     return Column(
       children: [
         ShappingItem(
           onTap: () {
             indexSelected = 0;
             setState(() {});
+            orderEntity.payWithCash = true;
           },
           isSeleced: indexSelected == 0,
           title: 'الدفع عند الاستلام',
           subTitle: 'التسليم من المكان',
-          price: 40,
+          price: context
+              .read<OrderEntity>()
+              .cartEntity
+              .calculateTotalPrice()
+              .toInt(),
         ),
         SizedBox(
           height: 8,
@@ -32,11 +41,14 @@ class _ShippingSectionState extends State<ShippingSectionPageView> {
           onTap: () {
             indexSelected = 1;
             setState(() {});
+            orderEntity.payWithCash = false;
           },
           isSeleced: indexSelected == 1,
-          title: 'الدفع عند الاستلام',
+          title: 'الدفع عبر الإنترنت',
           subTitle: 'التسليم من المكان',
-          price: 40,
+          price: (context.read<OrderEntity>().cartEntity.calculateTotalPrice() +
+                  40)
+              .toInt(),
         ),
       ],
     );

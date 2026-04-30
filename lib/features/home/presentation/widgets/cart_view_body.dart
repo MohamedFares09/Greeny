@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_app/constants.dart';
-import 'package:fruits_app/core/hleper_functions/build_snak_bar.dart';
 import 'package:fruits_app/core/utils/widgets/custom_app_bar.dart';
 import 'package:fruits_app/core/utils/widgets/custom_button.dart';
 import 'package:fruits_app/core/utils/widgets/custom_item_empty.dart';
@@ -63,7 +62,9 @@ class CartViewBody extends StatelessWidget {
                 return isEmpty
                     ? SizedBox()
                     : CustomButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, CheckoutView.route , arguments: context.read<CartCubit>().cartEntity);
+                        },
                         text:
                             "الدفع ${context.watch<CartCubit>().cartEntity.calculateTotalPrice()} جنيه  ");
               },
