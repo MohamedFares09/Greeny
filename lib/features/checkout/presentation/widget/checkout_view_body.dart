@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_app/core/hleper_functions/build_snak_bar.dart';
 import 'package:fruits_app/core/utils/widgets/custom_button.dart';
+import 'package:fruits_app/features/checkout/domain/entity/order_entity.dart';
 import 'package:fruits_app/features/checkout/presentation/widget/checkout_steps_page_view.dart';
 import 'package:fruits_app/features/checkout/presentation/widget/steps_item_checkout_view.dart';
+import 'package:provider/provider.dart';
 
 class CheckoutViewBody extends StatefulWidget {
   const CheckoutViewBody({super.key});
@@ -33,6 +36,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
 
   @override
   Widget build(BuildContext context) {
+    var orderentity = context.read<OrderEntity>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -53,8 +57,13 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
           CustomButton(
             text: getNextButtonText(),
             onPressed: () {
-              pageController.nextPage(
-                  duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+              if (orderentity.payWithCash != null) {
+                pageController.nextPage(
+                    duration: Duration(milliseconds: 300),
+                    curve: Curves.easeIn);
+              } else {
+                buildsnakbar(context, "يرجي اختيار طريقة الدفع", Colors.red);
+              }
             },
           ),
           SizedBox(
