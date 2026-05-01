@@ -15,7 +15,9 @@ class CheckoutViewBody extends StatefulWidget {
 
 class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   late PageController pageController;
+
   @override
+
   void initState() {
     pageController = PageController();
     pageController.addListener(() {
@@ -33,6 +35,10 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   }
 
   int currentPageIndex = 0;
+  final GlobalKey <FormState> _fromKey = GlobalKey<FormState>();
+
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +58,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
             height: 16,
           ),
           Expanded(
-            child: CheckoutStepsPageView(pageController: pageController),
+            child: CheckoutStepsPageView(pageController: pageController , formKey: _fromKey),
           ),
           CustomButton(
             text: getNextButtonText(),

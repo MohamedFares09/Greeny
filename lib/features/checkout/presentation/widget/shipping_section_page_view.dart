@@ -16,6 +16,7 @@ class _ShippingSectionState extends State<ShippingSectionPageView> with Automati
  
   @override
   Widget build(BuildContext context) {
+    super.build(context);
      var orderEntity = context.read<OrderEntity>();
     return Column(
       children: [

@@ -6,10 +6,12 @@ import 'package:fruits_app/features/checkout/presentation/widget/shipping_sectio
 class CheckoutStepsPageView extends StatelessWidget {
   const CheckoutStepsPageView({
     super.key,
-    required this.pageController,
+    required this.pageController, required this.formKey, 
+    
   });
 
   final PageController pageController;
+  final GlobalKey<FormState> formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +23,13 @@ class CheckoutStepsPageView extends StatelessWidget {
           return getPages()[index];
         });
   }
-}
-
-List<Widget> getPages() {
+  List<Widget> getPages() {
   return [
     ShippingSectionPageView(),
-    AddressSectionPageView(),
+    AddressSectionPageView(formKey: formKey),
     PaymentSectionPageView(),
   ];
+}     
 }
+
+
