@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_app/core/hleper_functions/get_user.dart';
 import 'package:fruits_app/core/utils/widgets/custom_app_bar.dart';
 import 'package:fruits_app/features/checkout/domain/entity/order_entity.dart';
 import 'package:fruits_app/features/checkout/domain/entity/shipping_address_entity.dart';
@@ -23,7 +24,7 @@ class CheckoutView extends StatelessWidget {
         },
       ),
       body: Provider.value (
-        value : OrderEntity(cartEntity , shippingAddressEntity: ShippingAddressEntity())  ,
+        value : OrderEntity(cartEntity , shippingAddressEntity: ShippingAddressEntity() , uID: getUser()!.uId),
         child: CheckoutViewBody()),
     );
   }
