@@ -7,9 +7,9 @@ import 'package:provider/provider.dart';
 
 class PaymentItemSummryWidget extends StatelessWidget {
   const PaymentItemSummryWidget({
-    super.key,
+    super.key, required this.pageController,
   });
-
+  final PageController pageController;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -72,7 +72,7 @@ class PaymentItemSummryWidget extends StatelessWidget {
           SizedBox(
             height: 16,
           ),
-          EditAddressPaymentItem(),
+          EditAddressPaymentItem(pageController: pageController),
         ],
       ),
     );

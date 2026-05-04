@@ -5,9 +5,10 @@ import 'package:fruits_app/features/checkout/domain/entity/order_entity.dart';
 
 class EditAddressPaymentItem extends StatelessWidget {
   const EditAddressPaymentItem({
+    required this.pageController,
     super.key,
   });
-
+  final PageController pageController;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,16 +20,28 @@ class EditAddressPaymentItem extends StatelessWidget {
               style: AppTextStyles.bold13,
             ),
             Spacer(),
-            Icon(
-              Icons.edit,
-              color: Colors.grey,
-              size: 16,
+            GestureDetector(
+              onTap: () {
+                pageController.animateToPage(1,
+                    duration: Duration(milliseconds: 300),
+                    curve: Curves.easeInOut);
+              },
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.edit,
+                    color: Colors.grey,
+                    size: 16,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text("تعديل",
+                      style: AppTextStyles.semibold13
+                          .copyWith(color: Colors.grey)),
+                ],
+              ),
             ),
-            SizedBox(
-              width: 5,
-            ),
-            Text("تعديل",
-                style: AppTextStyles.semibold13.copyWith(color: Colors.grey)),
           ],
         ),
         SizedBox(

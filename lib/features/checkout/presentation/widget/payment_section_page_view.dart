@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:fruits_app/features/checkout/presentation/widget/payment_item_summry_widget.dart';
 
 class PaymentSectionPageView extends StatelessWidget {
-  const PaymentSectionPageView({super.key});
-
+  const PaymentSectionPageView({super.key, required this.pageController});
+  final PageController pageController;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        PaymentItemSummryWidget(),
+        PaymentItemSummryWidget(
+          pageController: pageController,
+        ),
       ],
     );
   }
