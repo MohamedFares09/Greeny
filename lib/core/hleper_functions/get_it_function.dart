@@ -1,3 +1,5 @@
+import 'package:fruits_app/core/repos/order_repo/order_repo.dart';
+import 'package:fruits_app/core/repos/order_repo/order_repo_impl.dart';
 import 'package:fruits_app/core/repos/product_repo/product_repo.dart';
 import 'package:fruits_app/core/repos/product_repo/product_repo_impl.dart';
 import 'package:fruits_app/core/services/database_services.dart';
@@ -31,6 +33,12 @@ void setupGetIt() {
   getIt.registerSingleton<SignupCubit>(
     SignupCubit(
       getIt<AuthRepo>(),
+    ),
+  );
+
+    getIt.registerSingleton<OrderRepo>(
+    OrderRepoImpl(
+      fireStoreServices: getIt<DataBaseServices>(),
     ),
   );
 }

@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:fruits_app/core/hleper_functions/build_snak_bar.dart';
 import 'package:fruits_app/core/utils/widgets/custom_button.dart';
 import 'package:fruits_app/features/checkout/domain/entity/order_entity.dart';
+import 'package:fruits_app/features/checkout/presentation/cubits/add_order_cubit/add_order_cubit.dart';
 import 'package:fruits_app/features/checkout/presentation/widget/checkout_steps_page_view.dart';
 import 'package:fruits_app/features/checkout/presentation/widget/steps_item_checkout_view.dart';
+import 'package:fruits_app/features/home/presentation/views/home_view.dart';
+import 'package:fruits_app/features/home/presentation/views/main_view.dart';
 import 'package:provider/provider.dart';
 
 class CheckoutViewBody extends StatefulWidget {
@@ -70,6 +73,16 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
                 _handelshippingvalidation(orderentity, context);
               } else if (currentPageIndex == 1) {
                 _handelAddessvalidation();
+              } else {
+                try {
+                  var orderEntity = context.read<OrderEntity>();
+                  context
+                      .read<AddOrderCubit>()
+                      .addOrder(orderEntity: orderEntity);
+                  Navigator.pushReplacementNamed(context, MainView.route);
+                } on Exception catch (e) {
+                  // TODO
+                }
               }
             },
           ),
@@ -98,7 +111,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
       case 1:
         return 'التالي';
       case 2:
-        return 'تأكيد الطلب';
+        return 'الدفع عبر PayPal';
       default:
         return '';
     }

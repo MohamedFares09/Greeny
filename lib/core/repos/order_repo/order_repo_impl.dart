@@ -1,8 +1,6 @@
 import 'package:dartz/dartz.dart';
-
 import 'package:fruits_app/core/errors/failuer.dart';
 import 'package:fruits_app/core/services/database_services.dart';
-import 'package:fruits_app/core/services/firestore_services.dart';
 import 'package:fruits_app/core/utils/backend_endpoint.dart';
 import 'package:fruits_app/features/checkout/data/models/order_model.dart';
 import 'package:fruits_app/features/checkout/domain/entity/order_entity.dart';
