@@ -64,7 +64,7 @@ class CartItem extends StatelessWidget {
                           children: [
                             CartActionButton(
                               onPressed: () {
-                                cartItemEntity.incrementCount();
+                                cartItemEntity.incrementQuantity();
                                 context
                                     .read<CartItemCubit>()
                                     .updateCartItem(cartItemEntity);
@@ -77,7 +77,7 @@ class CartItem extends StatelessWidget {
                               width: 16,
                             ),
                             Text(
-                              cartItemEntity.count.toString(),
+                              cartItemEntity.quantity.toString(),
                               style: AppTextStyles.bold13,
                             ),
                             SizedBox(
@@ -85,7 +85,7 @@ class CartItem extends StatelessWidget {
                             ),
                             CartActionButton(
                               onPressed: () {
-                                cartItemEntity.decrementCount();
+                                cartItemEntity.decrementQuantity();
                                 context
                                     .read<CartItemCubit>()
                                     .updateCartItem(cartItemEntity);

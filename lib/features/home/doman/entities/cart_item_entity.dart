@@ -2,28 +2,28 @@ import 'package:fruits_app/core/entities/product_entity.dart';
 
 class CartItemEntity {
   final ProductEntity productEntity;
-  int count;
+  int quantity;
 
   CartItemEntity({
     required this.productEntity,
-    this.count = 0,
+    this.quantity = 0,
   });
 
   num calculateTotalPrice() {
-    return productEntity.price * count;
+    return productEntity.price * quantity;
   }
 
   num calculateTotalWeight() {
-    return productEntity.unitAmout * count;
+    return productEntity.unitAmout * quantity;
   }
 
-  incrementCount() {
-    count++;
+  incrementQuantity() {
+    quantity++;
   }
 
-  decrementCount() {
-    if (count > 0) {
-      count--;
+  decrementQuantity() {
+    if (quantity > 0) {
+      quantity--;
     }
   }
 }
