@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:fruits_app/core/entities/product_entity.dart';
 import 'package:fruits_app/core/errors/failuer.dart';
 import 'package:fruits_app/core/models/product_model.dart';
-import 'package:fruits_app/core/repos/product_repo.dart';
+import 'package:fruits_app/core/repos/product_repo/product_repo.dart';
 import 'package:fruits_app/core/services/database_services.dart';
 import 'package:fruits_app/core/utils/backend_endpoint.dart';
 

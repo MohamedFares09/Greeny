@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:fruits_app/core/entities/product_entity.dart';
-import 'package:fruits_app/core/repos/product_repo.dart';
+import 'package:fruits_app/core/repos/product_repo/product_repo.dart';
 import 'package:meta/meta.dart';
 
 part 'product_state.dart';
