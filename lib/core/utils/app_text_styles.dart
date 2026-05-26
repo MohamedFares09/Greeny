@@ -5,12 +5,12 @@ abstract class AppTextStyles {
     fontSize: 13,
     fontWeight: FontWeight.normal,
   );
-    static const TextStyle regular16 = TextStyle(
+  static const TextStyle regular16 = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.normal,
   );
 
-   static const TextStyle semibold11 = TextStyle(
+  static const TextStyle semibold11 = TextStyle(
     fontSize: 11,
     fontWeight: FontWeight.w600,
   );
@@ -19,7 +19,7 @@ abstract class AppTextStyles {
     fontSize: 13,
     fontWeight: FontWeight.w600,
   );
-   static const TextStyle semibold16 = TextStyle(
+  static const TextStyle semibold16 = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w600,
   );

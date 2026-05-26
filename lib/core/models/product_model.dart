@@ -35,7 +35,6 @@ class ProductModel {
     this.urlImage,
     required this.reviews,
     required this.avgRating,
-  
   });
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
@@ -50,18 +49,21 @@ class ProductModel {
       numberOfCalories: json['numberOfCalories'],
       unitAmout: json['unitAmout'],
       isOrganic: json['isOrganic'],
-      reviews: json['reviews'] != null ? List<ReviewModel>.from(json['reviews'].map((e) => ReviewModel.fromJson(e))) : [],
+      reviews: json['reviews'] != null
+          ? List<ReviewModel>.from(
+              json['reviews'].map((e) => ReviewModel.fromJson(e)))
+          : [],
       sellingCount: json['sellingCount'],
       avgRating: getAvgRating(json['reviews']),
-    );  
+    );
   }
-  ProductEntity toEntity(){
+  ProductEntity toEntity() {
     return ProductEntity(
       name: name,
       code: code,
       description: description,
       price: price,
-      image: image ?? File(''), 
+      image: image ?? File(''),
       isFeatured: isFeatured,
       urlImage: urlImage,
       expirationMonth: expirationMonth,
@@ -69,9 +71,9 @@ class ProductModel {
       unitAmout: unitAmout,
       isOrganic: isOrganic,
       reviews: reviews.map((e) => e.toEntity()).toList(),
-     
     );
   }
+
   toJson() {
     return {
       'name': name,
@@ -89,5 +91,3 @@ class ProductModel {
     };
   }
 }
-
-

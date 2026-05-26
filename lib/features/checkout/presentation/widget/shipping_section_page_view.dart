@@ -11,13 +11,14 @@ class ShippingSectionPageView extends StatefulWidget {
   State<ShippingSectionPageView> createState() => _ShippingSectionState();
 }
 
-class _ShippingSectionState extends State<ShippingSectionPageView> with AutomaticKeepAliveClientMixin {
+class _ShippingSectionState extends State<ShippingSectionPageView>
+    with AutomaticKeepAliveClientMixin {
   int indexSelected = -1;
- 
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
-     var orderEntity = context.read<OrderEntity>();
+    var orderEntity = context.read<OrderEntity>();
     return Column(
       children: [
         ShappingItem(
@@ -54,7 +55,7 @@ class _ShippingSectionState extends State<ShippingSectionPageView> with Automati
       ],
     );
   }
-  
+
   @override
   bool get wantKeepAlive => true;
 }

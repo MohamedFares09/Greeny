@@ -13,21 +13,23 @@ Route<dynamic> onGenerateRoute(RouteSettings setting) {
   switch (setting.name) {
     case SplashView.route:
       return MaterialPageRoute(builder: (context) => SplashView());
-      case OnbordingView.route:
+    case OnbordingView.route:
       return MaterialPageRoute(builder: (context) => OnbordingView());
-      case  SignInView.route :
-      return  MaterialPageRoute(builder: (context) => SignInView());
-      case  SignupView.route :
-      return  MaterialPageRoute(builder: (context) => SignupView());
-      case MainView.route :
+    case SignInView.route:
+      return MaterialPageRoute(builder: (context) => SignInView());
+    case SignupView.route:
+      return MaterialPageRoute(builder: (context) => SignupView());
+    case MainView.route:
       return MaterialPageRoute(builder: (context) => MainView());
-      case BestSellingView.route :
+    case BestSellingView.route:
       return MaterialPageRoute(builder: (context) => BestSellingView());
-      case ProductView.route :
+    case ProductView.route:
       return MaterialPageRoute(builder: (context) => ProductView());
-      case CheckoutView.route :
-      return MaterialPageRoute(builder: (context) => CheckoutView(cartEntity: setting.arguments as CartEntity));
-    default : 
-    return MaterialPageRoute(builder: (context) => Scaffold());
+    case CheckoutView.route:
+      return MaterialPageRoute(
+          builder: (context) =>
+              CheckoutView(cartEntity: setting.arguments as CartEntity));
+    default:
+      return MaterialPageRoute(builder: (context) => Scaffold());
   }
 }

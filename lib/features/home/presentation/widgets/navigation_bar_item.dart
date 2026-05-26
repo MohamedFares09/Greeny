@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:fruits_app/features/home/doman/entities/buttom_navigation_bar_entity.dart';
 import 'package:fruits_app/features/home/presentation/widgets/active_item_button_navigation_bar.dart';

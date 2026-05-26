@@ -69,8 +69,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                             email: email.trim(),
                             password: password,
                           );
-                    }
-                    else {
+                    } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(

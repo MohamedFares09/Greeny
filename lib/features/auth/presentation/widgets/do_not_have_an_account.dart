@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:fruits_app/core/utils/app_text_styles.dart';
 import 'package:fruits_app/features/auth/presentation/views/signup_view.dart';
@@ -15,8 +14,7 @@ class DoNotHaveAnAccount extends StatelessWidget {
       children: [
         Text(
           'لا تمتلك حساب ؟ ',
-          style: AppTextStyles.semibold16
-              .copyWith(color: Color(0xff616A6B)),
+          style: AppTextStyles.semibold16.copyWith(color: Color(0xff616A6B)),
         ),
         GestureDetector(
           onTap: () {
@@ -24,12 +22,10 @@ class DoNotHaveAnAccount extends StatelessWidget {
           },
           child: Text(
             'قم بانشاء حساب',
-            style: AppTextStyles.semibold16
-                .copyWith(color: Color(0xff1B5E37)),
+            style: AppTextStyles.semibold16.copyWith(color: Color(0xff1B5E37)),
           ),
         ),
       ],
     );
   }
 }
-

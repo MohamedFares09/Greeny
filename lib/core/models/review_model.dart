@@ -1,4 +1,3 @@
-
 import 'package:fruits_app/core/entities/review_entity.dart';
 
 class ReviewModel {
@@ -35,7 +34,7 @@ class ReviewModel {
       reviewDescription: json['reviewDescription'],
     );
   }
-ReviewEntity  toEntity(){
+  ReviewEntity toEntity() {
     return ReviewEntity(
       name: name,
       date: date,
@@ -44,6 +43,7 @@ ReviewEntity  toEntity(){
       reviewDescription: reviewDescription,
     );
   }
+
   toJson() {
     return {
       'name': name,

@@ -10,8 +10,7 @@ class CartHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
-        context.read<CartCubit>().cartEntity.cartItems.length;
+    context.read<CartCubit>().cartEntity.cartItems.length;
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: 12),

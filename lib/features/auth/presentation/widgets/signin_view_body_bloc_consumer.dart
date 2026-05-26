@@ -19,7 +19,7 @@ class SigninViewBodyBlocConsumer extends StatelessWidget {
           buildsnakbar(context, state.message, Colors.red);
         } else if (state is SigninSuccessState) {
           buildsnakbar(context, 'تم تسجيل الدخول بنجاح', Colors.green);
-          Navigator.pushNamed(context, MainView.route); 
+          Navigator.pushNamed(context, MainView.route);
           // Navigate to home screen or other screen
         }
       },

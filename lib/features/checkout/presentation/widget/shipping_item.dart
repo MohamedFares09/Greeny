@@ -8,7 +8,8 @@ class ShappingItem extends StatelessWidget {
       required this.title,
       required this.subTitle,
       required this.price,
-      required this.isSeleced, required this.onTap});
+      required this.isSeleced,
+      required this.onTap});
   final String title, subTitle;
   final int price;
   final bool isSeleced;

@@ -4,17 +4,17 @@ import 'package:fruits_app/features/auth/doman/entites/user_entites.dart';
 
 abstract class AuthRepo {
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword(
-    String name ,
-     String email,
-     String password,
+    String name,
+    String email,
+    String password,
   );
   Future<Either<Failure, UserEntity>> signInWithEmailAndPassword(
-     String email,
-     String password,
+    String email,
+    String password,
   );
   Future<Either<Failure, UserEntity>> signInWithGoogle();
   Future<Either<Failure, UserEntity>> signInWithFacebook();
   Future addUserData({required UserEntity user});
   Future saveUserData({required UserEntity user});
-  Future <UserEntity> getUserData({required String uid});
+  Future<UserEntity> getUserData({required String uid});
 }

@@ -15,15 +15,16 @@ class ProductGridViewBlocBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, state) {
-
-        if(state is ProductSuccess){
+        if (state is ProductSuccess) {
           return ProductsGridView(products: state.products);
+        } else if (state is ProductFailure) {
+          return SliverToBoxAdapter(
+              child: CustomErrorWidget(errorMessage: state.errorMessage));
         }
-        else if(state is ProductFailure){
-          return SliverToBoxAdapter(child: CustomErrorWidget(errorMessage: state.errorMessage));
-        }
-        return Skeletonizer.sliver(child:  ProductsGridView(products: getDummyProducts(),));
-        
+        return Skeletonizer.sliver(
+            child: ProductsGridView(
+          products: getDummyProducts(),
+        ));
       },
     );
   }

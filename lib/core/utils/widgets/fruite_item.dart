@@ -73,9 +73,7 @@ class FruiteItem extends StatelessWidget {
               ),
               trailing: GestureDetector(
                 onTap: () {
-                  context
-                      .read<CartCubit>()
-                      .addProduct(product);
+                  context.read<CartCubit>().addProduct(product);
                 },
                 child: CircleAvatar(
                   backgroundColor: AppColors.primaryColor,

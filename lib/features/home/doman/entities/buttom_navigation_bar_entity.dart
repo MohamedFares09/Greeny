@@ -4,8 +4,12 @@ class ButtonNavigationBarEntity {
   final String inActiveImage, activeImage;
   final String name;
 
-  ButtonNavigationBarEntity({required this.inActiveImage, required this.activeImage, required this.name});
+  ButtonNavigationBarEntity(
+      {required this.inActiveImage,
+      required this.activeImage,
+      required this.name});
 }
+
 List<ButtonNavigationBarEntity> buttonNavigationBarItems = [
   ButtonNavigationBarEntity(
       inActiveImage: Assets.home_image_inActive,

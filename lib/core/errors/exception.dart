@@ -25,9 +25,8 @@ class ServerException extends CustomException {
       throw CustomException('البريد الالكتروني او كلمة المرور غير صحيحة');
     } else if (e.code == 'account-exists-with-different-credential') {
       throw CustomException('البريد الالكتروني مرتبط بحساب اخر');
+    } else {
+      throw CustomException(e.toString());
     }
-    else {
-    throw CustomException(e.toString());
   }
-  } 
 }

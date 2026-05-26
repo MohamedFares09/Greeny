@@ -4,8 +4,8 @@ import 'package:fruits_app/core/utils/app_colors.dart';
 import 'package:fruits_app/core/utils/app_text_styles.dart';
 
 class TermsAndCondtionSignup extends StatefulWidget {
-  const TermsAndCondtionSignup({super.key , required this.onChanged});
-  final ValueChanged<bool> onChanged; 
+  const TermsAndCondtionSignup({super.key, required this.onChanged});
+  final ValueChanged<bool> onChanged;
   @override
   State<TermsAndCondtionSignup> createState() => _TermsAndCondtionSignupState();
 }

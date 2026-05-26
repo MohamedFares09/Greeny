@@ -7,7 +7,8 @@ import 'package:provider/provider.dart';
 
 class PaymentItemSummryWidget extends StatelessWidget {
   const PaymentItemSummryWidget({
-    super.key, required this.pageController,
+    super.key,
+    required this.pageController,
   });
   final PageController pageController;
   @override

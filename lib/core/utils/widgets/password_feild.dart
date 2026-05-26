@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_app/core/utils/widgets/custom_text_form_field.dart';
+
 class PasswordField extends StatefulWidget {
   const PasswordField({super.key, this.onSaved});
-  final void Function(String?)? onSaved; 
+  final void Function(String?)? onSaved;
 
   @override
   State<PasswordField> createState() => _PasswordFieldState();

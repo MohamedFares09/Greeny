@@ -5,7 +5,8 @@ import 'package:fruits_app/features/checkout/domain/entity/order_entity.dart';
 import 'package:provider/provider.dart';
 
 class AddressSectionPageView extends StatelessWidget {
-  const AddressSectionPageView({super.key, required this.formKey, required this.valueListenable});
+  const AddressSectionPageView(
+      {super.key, required this.formKey, required this.valueListenable});
   final GlobalKey<FormState> formKey;
   final ValueListenable<AutovalidateMode> valueListenable;
   @override

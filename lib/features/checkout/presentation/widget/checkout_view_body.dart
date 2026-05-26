@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fruits_app/core/hleper_functions/build_snak_bar.dart';
 import 'package:fruits_app/core/utils/widgets/custom_button.dart';
 import 'package:fruits_app/features/checkout/domain/entity/order_entity.dart';
-import 'package:fruits_app/features/checkout/presentation/cubits/add_order_cubit/add_order_cubit.dart';
 import 'package:fruits_app/features/checkout/presentation/widget/checkout_steps_page_view.dart';
 import 'package:fruits_app/features/checkout/presentation/widget/steps_item_checkout_view.dart';
-import 'package:fruits_app/features/home/presentation/views/home_view.dart';
-import 'package:fruits_app/features/home/presentation/views/main_view.dart';
+import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import 'package:provider/provider.dart';
 
 class CheckoutViewBody extends StatefulWidget {
@@ -74,15 +72,16 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
               } else if (currentPageIndex == 1) {
                 _handelAddessvalidation();
               } else {
-                try {
-                  var orderEntity = context.read<OrderEntity>();
-                  context
-                      .read<AddOrderCubit>()
-                      .addOrder(orderEntity: orderEntity);
-                  Navigator.pushReplacementNamed(context, MainView.route);
-                } on Exception catch (e) {
-                  // TODO
-                }
+                _processPayment(context);
+                // try {
+                //   var orderEntity = context.read<OrderEntity>();
+                //   context
+                //       .read<AddOrderCubit>()
+                //       .addOrder(orderEntity: orderEntity);
+                //   Navigator.pushReplacementNamed(context, MainView.route);
+                // } on Exception catch (e) {
+
+                // }
               }
             },
           ),
@@ -126,5 +125,27 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
       valueNotifier.value = AutovalidateMode.always;
       buildsnakbar(context, "يرجي ملئ جميع الحقول", Colors.red);
     }
+  }
+
+  void _processPayment(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (BuildContext context) => PaypalCheckoutView(
+        sandboxMode: true,
+        clientId: "",
+        secretKey: "",
+        transactions: const [],
+        note: "Contact us for any questions on your order.",
+        onSuccess: (Map params) async {
+          print("onSuccess: $params");
+        },
+        onError: (error) {
+          print("onError: $error");
+          Navigator.pop(context);
+        },
+        onCancel: () {
+          print('cancelled:');
+        },
+      ),
+    ));
   }
 }

@@ -1,20 +1,20 @@
 import 'package:fruits_app/features/checkout/domain/entity/shipping_address_entity.dart';
 
 class ShippingAddressModel {
-   String ? name;
-   String ? email;
-   String ? phoneNumber;
-   String ? address;
-   String ? city;
-   String ? addressDetails;
+  String? name;
+  String? email;
+  String? phoneNumber;
+  String? address;
+  String? city;
+  String? addressDetails;
 
   ShippingAddressModel({
-     this.name,
-     this.email,
-     this.phoneNumber,
-     this.address,
-     this.city,
-     this.addressDetails,
+    this.name,
+    this.email,
+    this.phoneNumber,
+    this.address,
+    this.city,
+    this.addressDetails,
   });
 
   factory ShippingAddressModel.fromEntity(ShippingAddressEntity entity) {
@@ -28,13 +28,11 @@ class ShippingAddressModel {
     );
   }
 
-
-
-
   @override
   String toString() {
     return '$city, $address, $addressDetails';
   }
+
   toJson() {
     return {
       'name': name,

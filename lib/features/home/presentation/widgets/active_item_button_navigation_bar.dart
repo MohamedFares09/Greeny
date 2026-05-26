@@ -13,8 +13,8 @@ class ActiveItem extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.only(left: 8),
         decoration: ShapeDecoration(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
             color: Color(0xFFEEEEEE)),
         child: Row(
           mainAxisSize: MainAxisSize.min,

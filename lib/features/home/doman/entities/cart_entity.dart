@@ -5,39 +5,37 @@ class CartEntity {
   final List<CartItemEntity> cartItems;
   CartEntity({required this.cartItems});
 
-
-  double calculateTotalPrice(){
+  double calculateTotalPrice() {
     double totalPrice = 0;
-    for(var cartItemEntity in cartItems){
+    for (var cartItemEntity in cartItems) {
       totalPrice += cartItemEntity.calculateTotalPrice();
     }
     return totalPrice;
   }
 
-
-  addCartItem(CartItemEntity cartItemEntity){
+  addCartItem(CartItemEntity cartItemEntity) {
     cartItems.add(cartItemEntity);
   }
-  removeCartItem(CartItemEntity cartItemEntity){
+
+  removeCartItem(CartItemEntity cartItemEntity) {
     cartItems.remove(cartItemEntity);
   }
-  bool isProductExist(ProductEntity productEntity){
-    for(var cartItemEntity in cartItems){
-      if(cartItemEntity.productEntity.code == productEntity.code){
+
+  bool isProductExist(ProductEntity productEntity) {
+    for (var cartItemEntity in cartItems) {
+      if (cartItemEntity.productEntity.code == productEntity.code) {
         return true;
       }
     }
     return false;
   }
 
-  CartItemEntity getCartItem(ProductEntity productEntity){
-    for(var cartItemEntity in cartItems){
-      if(cartItemEntity.productEntity.code == productEntity.code){
+  CartItemEntity getCartItem(ProductEntity productEntity) {
+    for (var cartItemEntity in cartItems) {
+      if (cartItemEntity.productEntity.code == productEntity.code) {
         return cartItemEntity;
       }
     }
     return CartItemEntity(productEntity: productEntity, quantity: 1);
   }
-
-  
 }

@@ -16,7 +16,7 @@ void setupGetIt() {
   getIt.registerSingleton<FirebaseAuthServices>(
     FirebaseAuthServices(),
   );
-   getIt.registerSingleton<DataBaseServices>(
+  getIt.registerSingleton<DataBaseServices>(
     FireStoreServices(),
   );
   getIt.registerSingleton<AuthRepo>(
@@ -25,9 +25,9 @@ void setupGetIt() {
       dataBaseServices: getIt<DataBaseServices>(),
     ),
   );
-   getIt.registerSingleton<ProductRepo>(
+  getIt.registerSingleton<ProductRepo>(
     ProductRepoImpl(
-    getIt<DataBaseServices>(),
+      getIt<DataBaseServices>(),
     ),
   );
   getIt.registerSingleton<SignupCubit>(
@@ -36,7 +36,7 @@ void setupGetIt() {
     ),
   );
 
-    getIt.registerSingleton<OrderRepo>(
+  getIt.registerSingleton<OrderRepo>(
     OrderRepoImpl(
       fireStoreServices: getIt<DataBaseServices>(),
     ),

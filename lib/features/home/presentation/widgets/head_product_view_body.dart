@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:fruits_app/core/utils/app_text_styles.dart';
 import 'package:fruits_app/core/utils/widgets/custom_notification.dart';

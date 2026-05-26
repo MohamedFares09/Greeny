@@ -1,5 +1,3 @@
-
-
 import 'package:fruits_app/features/auth/doman/entites/user_entites.dart';
 
 class SignupState {}

@@ -18,20 +18,25 @@ class ProductRepoImpl extends ProductRepo {
           data.map((e) => ProductModel.fromJson(e).toEntity()).toList();
       return right(products);
     } on Exception catch (e) {
-      return left(ServerFailure( e.toString()));
+      return left(ServerFailure(e.toString()));
     }
   }
 
   @override
   Future<Either<Failure, List<ProductEntity>>> getBestSellingProducts() async {
-      try {
+    try {
       var data = await dataBaseServices.getData(
-          path: BackendEndpoint.getAllProducts , queryParameters: {'limit' : 10 , 'orderyBy' : 'sellingCount' , 'isDescending' : true}) as List<Map<String, dynamic>>;
+          path: BackendEndpoint.getAllProducts,
+          queryParameters: {
+            'limit': 10,
+            'orderyBy': 'sellingCount',
+            'isDescending': true
+          }) as List<Map<String, dynamic>>;
       List<ProductEntity> products =
           data.map((e) => ProductModel.fromJson(e).toEntity()).toList();
       return right(products);
     } on Exception catch (e) {
-      return left(ServerFailure( e.toString()));
+      return left(ServerFailure(e.toString()));
     }
   }
 }

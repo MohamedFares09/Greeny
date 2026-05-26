@@ -10,22 +10,21 @@ class CartCubit extends Cubit<CartState> {
   CartCubit() : super(CartInitial());
 
   CartEntity cartEntity = CartEntity(cartItems: []);
-  void addProduct(ProductEntity productEntity){
-    // product exist in cartEntity or not 
+  void addProduct(ProductEntity productEntity) {
+    // product exist in cartEntity or not
     bool isExist = cartEntity.isProductExist(productEntity);
     CartItemEntity cartItemEntity = cartEntity.getCartItem(productEntity);
-    if(isExist){
+    if (isExist) {
       cartItemEntity.incrementQuantity();
-    //  cartEntity.addCartItem(cartItemEntity); // because we already have the cartItemEntity
+      //  cartEntity.addCartItem(cartItemEntity); // because we already have the cartItemEntity
     } else {
       cartEntity.addCartItem(cartItemEntity);
     }
     emit(CartAdded());
   }
 
-
-  void removeProduct(CartItemEntity cartItemEntity){
-  cartEntity.removeCartItem(cartItemEntity);
-  emit(CartRemoved());
+  void removeProduct(CartItemEntity cartItemEntity) {
+    cartEntity.removeCartItem(cartItemEntity);
+    emit(CartRemoved());
   }
 }

@@ -76,7 +76,7 @@ class AuthRepoImpl extends AuthRepo {
       } else {
         await addUserData(user: userEnriry);
       }
-    saveUserData(user:  userEnriry);
+      saveUserData(user: userEnriry);
       return right(userEnriry);
     } on CustomException catch (e) {
       await deleteUser(user);

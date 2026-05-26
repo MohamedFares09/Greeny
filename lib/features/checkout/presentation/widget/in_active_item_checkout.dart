@@ -3,9 +3,10 @@ import 'package:fruits_app/core/utils/app_colors.dart';
 import 'package:fruits_app/core/utils/app_text_styles.dart';
 
 class InActiveItemCheckout extends StatelessWidget {
-  const InActiveItemCheckout({super.key , required this.index , required this.text});
-  
-  final String text , index;
+  const InActiveItemCheckout(
+      {super.key, required this.index, required this.text});
+
+  final String text, index;
   @override
   Widget build(BuildContext context) {
     return Row(

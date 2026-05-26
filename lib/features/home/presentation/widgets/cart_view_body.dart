@@ -63,7 +63,8 @@ class CartViewBody extends StatelessWidget {
                     ? SizedBox()
                     : CustomButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, CheckoutView.route , arguments: context.read<CartCubit>().cartEntity);
+                          Navigator.pushNamed(context, CheckoutView.route,
+                              arguments: context.read<CartCubit>().cartEntity);
                         },
                         text:
                             "الدفع ${context.watch<CartCubit>().cartEntity.calculateTotalPrice()} جنيه  ");
