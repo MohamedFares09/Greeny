@@ -1,23 +1,26 @@
+import 'package:fruits_app/core/hleper_functions/get_currency.dart';
+import 'package:fruits_app/features/checkout/domain/entity/order_entity.dart';
+
 import 'details.dart';
 
 class Amount {
-  String? total;
+  double? total;
   String? currency;
-  Details? details;
+  DetailsEntity? details;
 
   Amount({this.total, this.currency, this.details});
-
-  factory Amount.fromJson(Map<String, dynamic> json) => Amount(
-        total: json['total'] as String?,
-        currency: json['currency'] as String?,
-        details: json['details'] == null
-            ? null
-            : Details.fromJson(json['details'] as Map<String, dynamic>),
-      );
 
   Map<String, dynamic> toJson() => {
         'total': total,
         'currency': currency,
         'details': details?.toJson(),
       };
+  factory Amount.fromEntity(OrderEntity orderEntity) {
+    return Amount(
+      total: orderEntity.calculateTotalPriceAfterDiscountAndShipping(),
+      currency: getCurrency(),
+      details: DetailsEntity.fromEntity(orderEntity)
+
+    );
+  }
 }

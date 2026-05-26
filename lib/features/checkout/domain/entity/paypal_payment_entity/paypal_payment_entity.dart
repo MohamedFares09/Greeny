@@ -1,3 +1,5 @@
+import 'package:fruits_app/features/checkout/domain/entity/order_entity.dart';
+
 import 'amount.dart';
 import 'item_list.dart';
 
@@ -8,21 +10,16 @@ class PaypalPaymentEntity {
 
   PaypalPaymentEntity({this.amount, this.description, this.itemList});
 
-  factory PaypalPaymentEntity.fromJson(Map<String, dynamic> json) {
-    return PaypalPaymentEntity(
-      amount: json['amount'] == null
-          ? null
-          : Amount.fromJson(json['amount'] as Map<String, dynamic>),
-      description: json['description'] as String?,
-      itemList: json['item_list'] == null
-          ? null
-          : ItemList.fromJson(json['item_list'] as Map<String, dynamic>),
-    );
-  }
-
   Map<String, dynamic> toJson() => {
         'amount': amount?.toJson(),
         'description': description,
         'item_list': itemList?.toJson(),
       };
+      factory PaypalPaymentEntity.fromEntity(OrderEntity orderEntity) {
+        return PaypalPaymentEntity(
+          amount: Amount.fromEntity(orderEntity),
+          description: "Payment for order ",
+          itemList: ItemList.fromEntity(orderEntity.cartEntity.cartItems),
+        );
+      }
 }

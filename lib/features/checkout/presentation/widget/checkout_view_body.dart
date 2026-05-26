@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_app/core/hleper_functions/build_snak_bar.dart';
+import 'package:fruits_app/core/utils/widgets/app_keys.dart';
 import 'package:fruits_app/core/utils/widgets/custom_button.dart';
 import 'package:fruits_app/features/checkout/domain/entity/order_entity.dart';
+import 'package:fruits_app/features/checkout/domain/entity/paypal_payment_entity/paypal_payment_entity.dart';
 import 'package:fruits_app/features/checkout/presentation/widget/checkout_steps_page_view.dart';
 import 'package:fruits_app/features/checkout/presentation/widget/steps_item_checkout_view.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
@@ -128,12 +130,16 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   }
 
   void _processPayment(BuildContext context) {
+    var orderEntity = context.read<OrderEntity>();
+    var paypalPaymentEntity = PaypalPaymentEntity.fromEntity(orderEntity);
     Navigator.of(context).push(MaterialPageRoute(
       builder: (BuildContext context) => PaypalCheckoutView(
         sandboxMode: true,
-        clientId: "",
-        secretKey: "",
-        transactions: const [],
+        clientId: kClientId,
+        secretKey: kPaypalSecretKey,
+        transactions:  [
+          paypalPaymentEntity.toJson()
+        ],
         note: "Contact us for any questions on your order.",
         onSuccess: (Map params) async {
           print("onSuccess: $params");
