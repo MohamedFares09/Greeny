@@ -31,10 +31,11 @@ class _ShippingSectionState extends State<ShippingSectionPageView>
           title: 'الدفع عند الاستلام',
           subTitle: 'التسليم من المكان',
           price: context
-              .read<OrderEntity>()
-              .cartEntity
-              .calculateTotalPrice()
-              .toInt(),
+                  .read<OrderEntity>()
+                  .cartEntity
+                  .calculateTotalPrice()
+                  .toInt() +
+              30,
         ),
         SizedBox(
           height: 8,
@@ -48,8 +49,7 @@ class _ShippingSectionState extends State<ShippingSectionPageView>
           isSeleced: indexSelected == 1,
           title: 'الدفع عبر الإنترنت',
           subTitle: 'التسليم من المكان',
-          price: (context.read<OrderEntity>().cartEntity.calculateTotalPrice() +
-                  40)
+          price: (context.read<OrderEntity>().cartEntity.calculateTotalPrice())
               .toInt(),
         ),
       ],

@@ -4,7 +4,7 @@ import 'package:fruits_app/features/checkout/domain/entity/order_entity.dart';
 import 'details.dart';
 
 class Amount {
-  double? total;
+  String? total;
   String? currency;
   DetailsEntity? details;
 
@@ -16,11 +16,15 @@ class Amount {
         'details': details?.toJson(),
       };
   factory Amount.fromEntity(OrderEntity orderEntity) {
-    return Amount(
-      total: orderEntity.calculateTotalPriceAfterDiscountAndShipping(),
-      currency: getCurrency(),
-      details: DetailsEntity.fromEntity(orderEntity)
+    final details = DetailsEntity.fromEntity(orderEntity);
+    final total = double.parse(details.subtotal!) +
+        double.parse(details.shipping!) -
+        double.parse(details.shippingDiscount!);
 
+    return Amount(
+      total: total.toStringAsFixed(2),
+      currency: getCurrency(),
+      details: details,
     );
   }
 }

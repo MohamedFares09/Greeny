@@ -1,12 +1,17 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import 'package:fruits_app/core/hleper_functions/build_snak_bar.dart';
 import 'package:fruits_app/core/utils/widgets/app_keys.dart';
 import 'package:fruits_app/core/utils/widgets/custom_button.dart';
 import 'package:fruits_app/features/checkout/domain/entity/order_entity.dart';
 import 'package:fruits_app/features/checkout/domain/entity/paypal_payment_entity/paypal_payment_entity.dart';
+import 'package:fruits_app/features/checkout/presentation/cubits/add_order_cubit/add_order_cubit.dart';
 import 'package:fruits_app/features/checkout/presentation/widget/checkout_steps_page_view.dart';
 import 'package:fruits_app/features/checkout/presentation/widget/steps_item_checkout_view.dart';
-import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
+import 'package:fruits_app/features/home/presentation/views/main_view.dart';
 import 'package:provider/provider.dart';
 
 class CheckoutViewBody extends StatefulWidget {
@@ -21,15 +26,18 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   ValueNotifier<AutovalidateMode> valueNotifier =
       ValueNotifier(AutovalidateMode.disabled);
 
+  int currentPageIndex = 0;
+  final GlobalKey<FormState> _fromKey = GlobalKey<FormState>();
+
   @override
   void initState() {
+    super.initState();
     pageController = PageController();
     pageController.addListener(() {
       setState(() {
         currentPageIndex = pageController.page!.toInt();
       });
     });
-    super.initState();
   }
 
   @override
@@ -39,26 +47,19 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     super.dispose();
   }
 
-  int currentPageIndex = 0;
-  final GlobalKey<FormState> _fromKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
-    var orderentity = context.read<OrderEntity>();
+    var orderEntity = context.read<OrderEntity>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         children: [
-          SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 20),
           StepsItemCheckoutView(
             currentPageIndex: currentPageIndex,
             pageController: pageController,
           ),
-          SizedBox(
-            height: 16,
-          ),
+          const SizedBox(height: 16),
           Expanded(
             child: CheckoutStepsPageView(
               pageController: pageController,
@@ -70,88 +71,113 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
             text: getNextButtonText(),
             onPressed: () {
               if (currentPageIndex == 0) {
-                _handelshippingvalidation(orderentity, context);
+                _handleShippingValidation(orderEntity, context);
               } else if (currentPageIndex == 1) {
-                _handelAddessvalidation();
+                _handleAddressValidation();
               } else {
-                _processPayment(context);
-                // try {
-                //   var orderEntity = context.read<OrderEntity>();
-                //   context
-                //       .read<AddOrderCubit>()
-                //       .addOrder(orderEntity: orderEntity);
-                //   Navigator.pushReplacementNamed(context, MainView.route);
-                // } on Exception catch (e) {
-
-                // }
+                _handleOrderPayment(context);
               }
             },
           ),
-          SizedBox(
-            height: 32,
-          ),
+          const SizedBox(height: 32),
         ],
       ),
     );
   }
 
-  void _handelshippingvalidation(
-      OrderEntity orderentity, BuildContext context) {
-    if (orderentity.payWithCash != null) {
+  void _handleShippingValidation(OrderEntity orderEntity, BuildContext context) {
+    if (orderEntity.payWithCash != null) {
       pageController.nextPage(
-          duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeIn,
+      );
     } else {
-      buildsnakbar(context, "يرجي اختيار طريقة الدفع", Colors.red);
+      buildsnakbar(context, 'Please choose a payment method', Colors.red);
     }
   }
 
   String getNextButtonText() {
     switch (currentPageIndex) {
       case 0:
-        return 'التالي';
       case 1:
-        return 'التالي';
+        return 'Next';
       case 2:
-        return 'الدفع عبر PayPal';
+        return 'Place order';
       default:
         return '';
     }
   }
 
-  void _handelAddessvalidation() {
+  void _handleAddressValidation() {
     if (_fromKey.currentState!.validate()) {
       _fromKey.currentState!.save();
       pageController.nextPage(
-          duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeIn,
+      );
     } else {
       valueNotifier.value = AutovalidateMode.always;
-      buildsnakbar(context, "يرجي ملئ جميع الحقول", Colors.red);
+      buildsnakbar(context, 'Please fill all fields', Colors.red);
+    }
+  }
+
+  void _handleOrderPayment(BuildContext context) {
+    var orderEntity = context.read<OrderEntity>();
+    if (orderEntity.payWithCash == true) {
+      context.read<AddOrderCubit>().addOrder(orderEntity: orderEntity);
+      Navigator.pushReplacementNamed(context, MainView.route);
+    } else {
+      _processPayment(context);
     }
   }
 
   void _processPayment(BuildContext context) {
+    var checkoutContext = context;
     var orderEntity = context.read<OrderEntity>();
+    var addOrderCubit = context.read<AddOrderCubit>();
     var paypalPaymentEntity = PaypalPaymentEntity.fromEntity(orderEntity);
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (BuildContext context) => PaypalCheckoutView(
-        sandboxMode: true,
-        clientId: kClientId,
-        secretKey: kPaypalSecretKey,
-        transactions:  [
-          paypalPaymentEntity.toJson()
-        ],
-        note: "Contact us for any questions on your order.",
-        onSuccess: (Map params) async {
-          print("onSuccess: $params");
-        },
-        onError: (error) {
-          print("onError: $error");
-          Navigator.pop(context);
-        },
-        onCancel: () {
-          print('cancelled:');
-        },
+
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext paypalContext) => PaypalCheckoutView(
+          sandboxMode: true,
+          clientId: kClientId,
+          secretKey: kPaypalSecretKey,
+          transactions: [paypalPaymentEntity.toJson()],
+          note: 'Contact us for any questions on your order.',
+          onSuccess: (Map params) async {
+            log('PayPal success: $params');
+            addOrderCubit.addOrder(orderEntity: orderEntity);
+            Navigator.pop(paypalContext);
+            buildsnakbar(
+              checkoutContext,
+              'Payment completed successfully',
+              Colors.green,
+            );
+          },
+          onError: (error) {
+            log(error.toString());
+            Navigator.pop(paypalContext);
+            buildsnakbar(
+              checkoutContext,
+              _getPaypalErrorMessage(error),
+              Colors.red,
+            );
+          },
+          onCancel: () {
+            log('PayPal payment cancelled');
+          },
+        ),
       ),
-    ));
+    );
+  }
+
+  String _getPaypalErrorMessage(dynamic error) {
+    final errorText = error.toString();
+    if (errorText.contains('COMPLIANCE_VIOLATION')) {
+      return 'PayPal declined this transaction because of account or country compliance rules. Try another sandbox buyer or merchant account.';
+    }
+
+    return 'Payment failed. Please try again.';
   }
 }

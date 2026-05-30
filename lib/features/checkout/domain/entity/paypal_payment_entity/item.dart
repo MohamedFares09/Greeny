@@ -19,7 +19,7 @@ class ItemEntity {
     return ItemEntity(
       name: cartItem.productEntity.name,
       quantity: cartItem.quantity,
-      price: cartItem.productEntity.price.toString(),
+      price: formatPaypalAmount(cartItem.productEntity.price),
       currency: getCurrency(),
     );
   }
