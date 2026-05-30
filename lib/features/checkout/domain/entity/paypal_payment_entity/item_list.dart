@@ -1,4 +1,3 @@
-import 'package:fruits_app/features/checkout/domain/entity/order_entity.dart';
 import 'package:fruits_app/features/home/doman/entities/cart_item_entity.dart';
 
 import 'item.dart';

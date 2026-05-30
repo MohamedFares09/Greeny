@@ -85,7 +85,8 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     );
   }
 
-  void _handleShippingValidation(OrderEntity orderEntity, BuildContext context) {
+  void _handleShippingValidation(
+      OrderEntity orderEntity, BuildContext context) {
     if (orderEntity.payWithCash != null) {
       pageController.nextPage(
         duration: const Duration(milliseconds: 300),
@@ -121,11 +122,13 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     }
   }
 
-  void _handleOrderPayment(BuildContext context) {
+  Future<void> _handleOrderPayment(BuildContext context) async {
     var orderEntity = context.read<OrderEntity>();
     if (orderEntity.payWithCash == true) {
-      context.read<AddOrderCubit>().addOrder(orderEntity: orderEntity);
+      await context.read<AddOrderCubit>().addOrder(orderEntity: orderEntity);
+      if (!mounted) return;
       Navigator.pushReplacementNamed(context, MainView.route);
+      log('Order placed with cash on delivery');
     } else {
       _processPayment(context);
     }
@@ -147,7 +150,8 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
           note: 'Contact us for any questions on your order.',
           onSuccess: (Map params) async {
             log('PayPal success: $params');
-            addOrderCubit.addOrder(orderEntity: orderEntity);
+            await addOrderCubit.addOrder(orderEntity: orderEntity);
+            if (!mounted) return;
             Navigator.pop(paypalContext);
             buildsnakbar(
               checkoutContext,
